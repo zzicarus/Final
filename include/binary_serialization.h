@@ -3,10 +3,20 @@
 
 #include <fstream>
 #include <iostream>
-// 定义宏，用于生成自定义类型的序列化和反序列化函数
-
+#include <iostream>
+#include <vector>
+#include <string>
+#include <map>
+#include <list>
+#include <set>
 namespace binary_serialization
 {
+#define Binary_Open_File_out() std::ofstream out("../data/User.data", std::ios::binary);
+#define Binary_Add_Element(object, type_name) binary_serialization::serialize(object.type_name, out);
+#define Binary_End_File_out() out.close();
+#define Binary_Open_File_in() std::ifstream in("../data/User.data", std::ios::binary);
+#define Binary_Parse_Element(object, type_name) binary_serialization::deserialize(object.type_name, in);
+#define Binary_End_File_in() in.close();
     // General template for serialization
     template <typename T>
     void serialize(const T &object, const std::string &file_path)

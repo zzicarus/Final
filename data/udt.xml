@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serialization>
+    <int val="4"/>
+    <string val="OOP"/>
+    <vector>
+        <double val="101.101"/>
+        <double val="95.010000000000005"/>
+        <double val="96.030000000000001"/>
+    </vector>
+</serialization>

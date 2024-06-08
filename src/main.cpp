@@ -1,9 +1,3 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <map>
-#include <list>
-#include <set>
 #include "..\include\binary_serialization.h"
 #include "..\include\xml_serialization.h"
 void TestForBinary();
@@ -21,20 +15,11 @@ void Print(const std::map<T, P> &Map)
     for (const auto &elem : Map)
         std::cout << "(" << elem.first << "," << elem.second << "),";
 }
-class CustomType
-{
-public:
-    int id;
-    std::string name;
-    double value;
-
-    CustomType(int id = 0, const std::string &name = "", double value = 0.0)
-        : id(id), name(name), value(value) {}
-};
-CustomType temp;
 
 int main()
 {
+    TestForBinary();
+    TestForXml();
 
     return 0;
 }
@@ -42,11 +27,6 @@ int main()
 // Test for binary_serialization
 void TestForBinary()
 {
-    struct UDT
-    {
-        int idx;
-        double data;
-    };
     using namespace binary_serialization;
     std::cout << std::endl
               << std::endl;
@@ -147,7 +127,7 @@ void TestForBinary()
         Print(elem.second);
         std::cout << "]" << ")";
     }
-    std::cout << "Deserialized Output: " << std::endl;
+    std::cout << "\nDeserialized Output: " << std::endl;
     for (auto elem : nestedMap1)
     {
         std::cout << "(" << elem.first << ",";
@@ -157,6 +137,27 @@ void TestForBinary()
     }
     std::cout << std::endl;
     // user difined type
+    struct UDT
+    {
+        int id;
+        std::string name;
+        std::vector<double> value;
+    };
+    UDT udt = {4, "OOP", {101.101, 95.01, 96.03}}, udt1;
+    Binary_Open_File_out();
+    Binary_Add_Element(udt, id);
+    Binary_Add_Element(udt, name);
+    Binary_Add_Element(udt, value);
+    Binary_End_File_out();
+    Binary_Open_File_in();
+    Binary_Parse_Element(udt1, id);
+    Binary_Parse_Element(udt1, name);
+    Binary_Parse_Element(udt1, value);
+    Binary_End_File_in();
+
+    std::cout << "User Defined Type: " << udt1.id << " " << udt1.name << " ";
+    for (auto i : udt1.value)
+        std::cout << i << " ";
 }
 
 void TestForXml()
@@ -313,4 +314,24 @@ void TestForXml()
         std::cout << "] }" << std::endl;
     }
     // user defined
+    struct UDT
+    {
+        int id;
+        std::string name;
+        std::vector<double> value;
+    };
+    UDT udt = {4, "OOP", {101.101, 95.01, 96.03}}, udt1;
+    XML_Open_File_out();
+    XML_Add_Element(udt, id);
+    XML_Add_Element(udt, name);
+    XML_Add_Element(udt, value);
+    XML_End_File_out();
+    XML_Open_File_in();
+    XML_Parse_Element(udt1, id);
+    XML_Parse_Element(udt1, name);
+    XML_Parse_Element(udt1, value);
+
+    std::cout << "User Defined Type: " << udt1.id << " " << udt1.name << " ";
+    for (auto i : udt1.value)
+        std::cout << i << " ";
 }

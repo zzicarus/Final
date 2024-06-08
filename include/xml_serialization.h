@@ -5,6 +5,33 @@
 
 namespace xml_serialization
 {
+#define XML_Open_File_out()                                 \
+    XMLDocument doc_udt;                                    \
+    XMLDeclaration *decl = doc_udt.NewDeclaration();        \
+    doc_udt.InsertFirstChild(decl);                         \
+                                                            \
+    XMLElement *root = doc_udt.NewElement("serialization"); \
+    doc_udt.InsertEndChild(root);
+
+#define XML_Add_Element(object, type_name) \
+    addElement(object.type_name, doc_udt, root);
+
+#define XML_End_File_out()                                      \
+    {                                                           \
+        XMLError eResult = doc_udt.SaveFile("../data/udt.xml"); \
+        if (eResult != XML_SUCCESS)                             \
+        {                                                       \
+            std::cout << "Saving File Fails" << std::endl;      \
+        }                                                       \
+    }
+
+#define XML_Open_File_in()                                             \
+    {                                                                  \
+        XMLError eResult = doc_udt.LoadFile("../data/udt.xml");        \
+        XMLElement *root = doc_udt.FirstChildElement("serialization"); \
+    }
+#define XML_Parse_Element(object, type_name) \
+    parseElement(object.type_name, doc_udt, root);
     using namespace tinyxml2;
     // Serialize and deserialize
     // 委托给 parseElement 去处理不同的类型
