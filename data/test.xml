@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serialization>
+    <map>
+        <entry>
+            <key>
+                <string val="one"/>
+            </key>
+            <value>
+                <vector>
+                    <vector>
+                        <int val="1"/>
+                        <int val="2"/>
+                        <int val="3"/>
+                    </vector>
+                    <vector>
+                        <int val="11"/>
+                        <int val="22"/>
+                        <int val="33"/>
+                    </vector>
+                </vector>
+            </value>
+        </entry>
+        <entry>
+            <key>
+                <string val="three"/>
+            </key>
+            <value>
+                <vector>
+                    <vector>
+                        <int val="7"/>
+                        <int val="8"/>
+                        <int val="9"/>
+                    </vector>
+                    <vector>
+                        <int val="77"/>
+                        <int val="88"/>
+                        <int val="99"/>
+                    </vector>
+                </vector>
+            </value>
+        </entry>
+        <entry>
+            <key>
+                <string val="two"/>
+            </key>
+            <value>
+                <vector>
+                    <vector>
+                        <int val="4"/>
+                        <int val="5"/>
+                        <int val="6"/>
+                    </vector>
+                    <vector>
+                        <int val="44"/>
+                        <int val="55"/>
+                        <int val="66"/>
+                    </vector>
+                </vector>
+            </value>
+        </entry>
+    </map>
+</serialization>
